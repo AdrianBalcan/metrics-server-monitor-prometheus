@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-server-monitor-prometheus
+  namespace: default
+  labels:
+    app: metrics-server-monitor-prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metrics-server-monitor-prometheus
+  template:
+    metadata:
+      labels:
+        app: metrics-server-monitor-prometheus
+    spec:
+      containers:
+      - name: metrics-server-monitor-prometheus
+        image: adrianbalcan/metrics-server-monitor-prometheus:latest
+        ports:
+        - containerPort: 9100
+          name: metrics
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 50m
+            memory: 20Mi

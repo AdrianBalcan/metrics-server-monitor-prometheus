@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scrape: "true"
+  labels:
+    k8s-app: metrics-server-monitor-prometheus
+  name: metrics-server-monitor-prometheus
+  namespace: default
+spec:
+  ports:
+  - name: metrics
+    port: 9100
+    protocol: TCP
+    targetPort: metrics
+  selector:
+    app: metrics-server-monitor-prometheus
+  sessionAffinity: None
+  type: ClusterIP
