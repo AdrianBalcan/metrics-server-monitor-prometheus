@@ -31,6 +31,8 @@ def handle_500(error):
 def metrics():
   pods_cpu._metrics.clear()
   pods_memory._metrics.clear()
+  nodes_cpu._metrics.clear()
+  nodes_memory._metrics.clear()
   pods_url = 'https://metrics-server.kube-system/apis/metrics.k8s.io/v1beta1/pods'
   nodes_url = 'https://metrics-server.kube-system/apis/metrics.k8s.io/v1beta1/nodes'
   pods = json.load(urllib.urlopen(pods_url, context=ssl._create_unverified_context()))
